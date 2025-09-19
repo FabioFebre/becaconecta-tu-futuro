@@ -27,7 +27,7 @@ const HeroSection = () => {
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                <span className="bg-text-gradient bg-clip-text text-transparent">
+                <span className="text-gradient">
                   Conecta tu futuro
                 </span>
                 <br />

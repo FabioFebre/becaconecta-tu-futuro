@@ -131,8 +131,12 @@ All colors MUST be HSL.
     background: var(--card-gradient);
   }
   
-  .bg-text-gradient {
-    background: var(--text-gradient);
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(210 100% 45%), hsl(140 65% 40%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
   
   .shadow-soft {

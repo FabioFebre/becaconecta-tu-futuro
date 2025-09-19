@@ -26,7 +26,7 @@ const Header = () => {
               alt="BecaConecta Logo" 
               className="h-8 w-8"
             />
-            <span className="text-xl font-bold bg-text-gradient bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-gradient">
               BecaConecta
             </span>
           </div>

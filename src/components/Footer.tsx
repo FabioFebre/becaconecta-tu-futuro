@@ -67,7 +67,7 @@ const Footer = () => {
                 alt="BecaConecta Logo" 
                 className="h-10 w-10"
               />
-              <span className="text-2xl font-bold bg-text-gradient bg-clip-text text-transparent">
+              <span className="text-2xl font-bold text-gradient">
                 BecaConecta
               </span>
             </div>

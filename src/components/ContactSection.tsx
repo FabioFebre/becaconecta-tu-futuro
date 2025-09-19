@@ -106,7 +106,7 @@ const ContactSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="bg-text-gradient bg-clip-text text-transparent">
+            <span className="text-gradient">
               Contáctanos
             </span>
           </h2>
