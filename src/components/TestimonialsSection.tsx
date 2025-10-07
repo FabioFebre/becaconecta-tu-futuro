@@ -158,19 +158,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              ¿Listo para ser la próxima historia de éxito?
-            </h3>
-            <p className="text-muted-foreground mb-8">
-              Únete a miles de estudiantes que ya confían en BecaConecta para alcanzar sus sueños educativos.
-            </p>
-            <div className="bg-hero-gradient text-white px-8 py-4 rounded-xl inline-block font-semibold hover:shadow-hero transition-all duration-300 cursor-pointer text-lg">
-              Comenzar mi Postulación
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
   );

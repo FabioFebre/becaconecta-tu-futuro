@@ -172,41 +172,6 @@ const BeneficiariesSection = () => {
               </div>
             ))}
           </div>
-          
-          <div className="text-center mt-8 p-6 bg-primary/5 rounded-2xl">
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              <strong className="text-foreground">Nota importante:</strong> Los requisitos específicos pueden variar según el tipo de beca. 
-              Utiliza nuestro test de elegibilidad para conocer los requisitos exactos de la beca que te interesa.
-            </p>
-            <div className="mt-4">
-              <div className="bg-hero-gradient text-white px-6 py-3 rounded-xl inline-block font-semibold hover:shadow-soft transition-all duration-300 cursor-pointer">
-                Verificar mi Elegibilidad
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Success Metrics */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-foreground mb-8">
-            Resultados por Perfil de Usuario
-          </h3>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { profile: "Estudiantes Secundaria", success: "78%", applications: "1,200+" },
-              { profile: "Jóvenes Egresados", success: "82%", applications: "950+" },
-              { profile: "Becarios Actuales", success: "95%", applications: "300+" },
-              { profile: "Con Apoyo Familiar", success: "88%", applications: "2,100+" }
-            ].map((metric, index) => (
-              <div key={index} className="text-center p-4 rounded-2xl bg-muted/50">
-                <div className="text-2xl font-bold text-primary mb-1">{metric.success}</div>
-                <div className="text-sm text-muted-foreground mb-2">Tasa de Éxito</div>
-                <div className="text-xs text-muted-foreground">{metric.applications} postulaciones</div>
-                <div className="text-xs font-medium text-foreground mt-1">{metric.profile}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
