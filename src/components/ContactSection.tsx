@@ -18,24 +18,75 @@ const ContactSection = () => {
     consultationType: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simulate form submission
-    toast({
-      title: "¡Mensaje enviado!",
-      description: "Te responderemos dentro de las próximas 24 horas.",
-    });
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-      consultationType: ""
-    });
+
+    // Validaciones
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.subject.trim() ||
+      !formData.message.trim() ||
+      !formData.consultationType.trim()
+    ) {
+      toast({
+        title: "Campos obligatorios faltantes",
+        description: "Por favor, completa todos los campos marcados con *.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Validación de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Correo inválido",
+        description: "Por favor, ingresa un correo electrónico válido.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Preparar datos para el backend
+    const payload = {
+      nombres: formData.name,
+      correo: formData.email,
+      telefono: formData.phone,
+      tipo_consulta: formData.consultationType,
+      asunto: formData.subject,
+      mensaje: formData.message
+    };
+
+    try {
+      const res = await fetch("https://beca-conecta-backend.onrender.com/usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error("Error al enviar el formulario");
+
+      toast({
+        title: "¡Mensaje enviado!",
+        description: "Te responderemos dentro de las próximas 24 horas.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        consultationType: ""
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "No se pudo enviar el mensaje. Intenta nuevamente.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
