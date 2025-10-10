@@ -4,6 +4,7 @@ import { Star, Quote, ArrowLeft, ArrowRight } from "lucide-react";
 import testimonialsImage from "@/assets/testimonios-success.jpg";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const TestimonialsSection = () => {
   const testimonials = [
@@ -169,8 +170,16 @@ const TestimonialsSection = () => {
               </motion.div>
             ))}
           </div>
+          <div className="flex justify-center mt-10">
+              <Button className="bg-hero-gradient text-white px-6 py-3 rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out transform">
+                ¡Empieza YA con nosotros!
+              </Button>
+            </div>
         </motion.div>
       </div>
+
+            
+
     </section>
   );
 };

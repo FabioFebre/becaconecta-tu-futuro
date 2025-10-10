@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, MessageCircle, Send } from "lucide-react";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -107,20 +108,6 @@ const ContactSection = () => {
       value: "+51 1 234 5678",
       subtitle: "Lun - Vie: 8:00 AM - 6:00 PM",
       color: "bg-secondary"
-    },
-    {
-      icon: MapPin,
-      title: "Ubicación",
-      value: "Lima, Perú",
-      subtitle: "Oficina principal",
-      color: "bg-accent"
-    },
-    {
-      icon: MessageCircle,
-      title: "Chat en Vivo",
-      value: "Disponible 24/7",
-      subtitle: "Chatbot inteligente",
-      color: "bg-primary"
     }
   ];
 
@@ -153,7 +140,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contacto" className="py-24">
+    <section id="contacto" className="p-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -341,22 +328,57 @@ const ContactSection = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold text-center text-foreground mb-12">
-            Preguntas Frecuentes
-          </h3>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {faqs.map((faq, index) => (
-              <Card key={index} className="border-0 shadow-card hover:shadow-soft transition-all duration-300">
-                <CardContent className="p-6">
-                  <h4 className="font-semibold text-foreground mb-3">{faq.question}</h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+        <section className="mt-20 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto">
+      <h3 className="text-3xl sm:text-4xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 mb-12">
+        Preguntas Frecuentes
+      </h3>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {faqs.map((faq, i) => (
+          <article
+            key={i}
+            className="relative bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+            aria-labelledby={`faq-${i}-q`}
+          >
+            {/* Banda de acento a la izquierda */}
+            <div className="absolute left-0 top-6 bottom-6 w-1.5 rounded-r-2xl bg-gradient-to-b from-primary to-primary/60 pointer-events-none" />
+
+            {/* Icono decorativo arriba-derecha */}
+            <div className="absolute right-4 top-4 opacity-10 dark:opacity-6 transform rotate-6">
+              <InformationCircleIcon className="w-14 h-14 text-primary" />
+            </div>
+
+            {/* Contenido */}
+            <header className="pr-6">
+              <h4
+                id={`faq-${i}-q`}
+                className="text-lg sm:text-xl font-semibold text-foreground mb-2"
+              >
+                {faq.question}
+              </h4>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-prose">
+                {faq.answer}
+              </p>
+            </header>
+
+            {/* Pie: etiqueta o CTA opcional */}
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-xs text-muted-foreground">Última actualización • 2025</span>
+              {faq.popular && (
+                <span className="inline-flex items-center gap-2 text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
+                  ⭐ Popular
+                </span>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* Separador decorativo */}
+      <div className="mt-12 flex justify-center">
+        <div className="h-1 w-28 rounded-full bg-gradient-to-r from-primary to-primary/70" />
+      </div>
+    </section>
 
        
       </div>

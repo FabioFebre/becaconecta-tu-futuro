@@ -20,12 +20,6 @@ const HeroSection = () => {
           {/* Content */}
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
-              <div className="inline-block">
-                <span className="bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-semibold">
-                  🎓 Tu futuro educativo empieza aquí
-                </span>
-              </div>
-
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 <span className="text-gradient">Conecta tu futuro</span>
                 <br />
@@ -53,6 +47,11 @@ const HeroSection = () => {
                 <div className="text-sm text-muted-foreground">Gratuito</div>
               </div>
             </div>
+
+            <Button className="bg-hero-gradient text-white px-6 py-3 rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out transform">
+              ¡Empieza YA con nosotros!
+            </Button>
+
           </div>
 
           {/* Hero Image + Floating Cards */}

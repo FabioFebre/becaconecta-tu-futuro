@@ -34,25 +34,6 @@ const Footer = () => {
   return (
     <footer className="bg-muted/30 border-t border-border">
       {/* Newsletter */}
-      <div className="bg-hero-gradient text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4">¡Mantente Informado!</h3>
-          <p className="text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Recibe las últimas noticias sobre becas, fechas importantes y consejos 
-            para mejorar tu postulación directamente en tu correo.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Ingresa tu correo electrónico"
-              className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
-            />
-            <Button variant="secondary" className="bg-white text-primary hover:bg-white/90 font-semibold">
-              Suscribirse
-            </Button>
-          </div>
-        </div>
-      </div>
 
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
