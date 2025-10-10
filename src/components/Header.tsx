@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import becaConectaLogo from "@/assets/becaconecta-logo.png";
 
 const Header = () => {
@@ -8,7 +7,6 @@ const Header = () => {
 
   const menuItems = [
     { label: "Inicio", href: "#inicio" },
-    { label: "Sobre Nosotros", href: "#sobre-nosotros" },
     { label: "Becas", href: "#becas" },
     { label: "Funcionalidades", href: "#funcionalidades" },
     { label: "Testimonios", href: "#testimonios" },
@@ -16,14 +14,14 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <img 
-              src={becaConectaLogo} 
-              alt="BecaConecta Logo" 
+            <img
+              src={becaConectaLogo}
+              alt="BecaConecta Logo"
               className="h-8 w-8"
             />
             <span className="text-xl font-bold text-gradient">
@@ -44,22 +42,17 @@ const Header = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button className="bg-hero-gradient hover:shadow-soft transition-all duration-300">
-              Comenzar
-            </Button>
-          </div>
-
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
+          <button
+            className="md:hidden p-2 rounded-md hover:bg-accent transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+            {isMenuOpen ? (
+              <X className="h-6 w-6 text-foreground" />
+            ) : (
+              <Menu className="h-6 w-6 text-foreground" />
+            )}
+          </button>
         </div>
 
         {/* Mobile Navigation */}
@@ -76,9 +69,6 @@ const Header = () => {
                   {item.label}
                 </a>
               ))}
-              <Button className="bg-hero-gradient hover:shadow-soft transition-all duration-300 w-full mt-4">
-                Comenzar
-              </Button>
             </div>
           </div>
         )}

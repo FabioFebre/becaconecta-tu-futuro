@@ -10,25 +10,25 @@ const Footer = () => {
     { label: "Becas", href: "#becas" },
     { label: "Funcionalidades", href: "#funcionalidades" },
     { label: "Testimonios", href: "#testimonios" },
-    { label: "Contacto", href: "#contacto" }
+    { label: "Contacto", href: "#contacto" },
   ];
 
   const becasLinks = [
-    "Beca 18",
-    "Beca Generación del Bicentenario", 
-    "Beca Perú",
-    "Beca Excelencia Académica",
-    "Beca Mujeres en Ciencia",
-    "Todas las Becas"
+    { label: "Beca 18", url: "https://www.pronabec.gob.pe/beca-18/" },
+    { label: "Beca Generación del Bicentenario", url: "https://www.pronabec.gob.pe/beca-generacion-bicentenario/" },
+    { label: "Beca Perú", url: "https://www.pronabec.gob.pe/beca-peru/" },
+    { label: "Beca Excelencia Académica", url: "https://www.pronabec.gob.pe/beca-excelencia-academica/" },
+    { label: "Beca Mujeres en Ciencia", url: "https://www.pronabec.gob.pe/beca-mujeres-en-ciencia/" },
+    { label: "Todas las Becas", url: "https://www.pronabec.gob.pe/becas/" },
   ];
 
   const recursos = [
-    "Test de Elegibilidad",
-    "Guías de Postulación",
-    "Plantillas de Documentos",
-    "Calendario de Becas",
-    "Preguntas Frecuentes",
-    "Blog Educativo"
+    { label: "Test de Elegibilidad", url: "#test-elegibilidad" },
+    { label: "Guías de Postulación", url: "https://www.pronabec.gob.pe/guia-de-postulacion/" },
+    { label: "Plantillas de Documentos", url: "https://www.pronabec.gob.pe/documentos-requeridos/" },
+    { label: "Calendario de Becas", url: "https://www.pronabec.gob.pe/calendario-becas/" },
+    { label: "Preguntas Frecuentes", url: "https://www.pronabec.gob.pe/preguntas-frecuentes/" },
+    { label: "Blog Educativo", url: "https://blog.pronabec.gob.pe/" },
   ];
 
   return (
@@ -36,17 +36,15 @@ const Footer = () => {
       {/* Newsletter */}
       <div className="bg-hero-gradient text-white py-12">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4">
-            ¡Mantente Informado!
-          </h3>
-          <p className="text-white/90 mb-8 max-w-2xl mx-auto">
+          <h3 className="text-2xl font-bold mb-4">¡Mantente Informado!</h3>
+          <p className="text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Recibe las últimas noticias sobre becas, fechas importantes y consejos 
             para mejorar tu postulación directamente en tu correo.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input 
-              type="email" 
-              placeholder="Ingresa tu correo electrónico" 
+            <Input
+              type="email"
+              placeholder="Ingresa tu correo electrónico"
               className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
             />
             <Button variant="secondary" className="bg-white text-primary hover:bg-white/90 font-semibold">
@@ -62,16 +60,10 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-3">
-              <img 
-                src={becaConectaLogo} 
-                alt="BecaConecta Logo" 
-                className="h-10 w-10"
-              />
-              <span className="text-2xl font-bold text-gradient">
-                BecaConecta
-              </span>
+              <img src={becaConectaLogo} alt="BecaConecta Logo" className="h-10 w-10" />
+              <span className="text-2xl font-bold text-gradient">BecaConecta</span>
             </div>
-            
+
             <p className="text-muted-foreground leading-relaxed max-w-lg">
               Conectamos el talento peruano con las mejores oportunidades educativas. 
               Nuestra misión es democratizar el acceso a la educación superior a través 
@@ -96,22 +88,42 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Social Media */}
+            {/* Redes Sociales */}
             <div className="space-y-3">
               <h4 className="font-semibold text-foreground">Síguenos:</h4>
               <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark cursor-pointer transition-colors duration-300">
+                <a
+                  href="https://www.facebook.com/Pronabec"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
+                >
                   <Facebook className="h-5 w-5" />
-                </div>
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark cursor-pointer transition-colors duration-300">
+                </a>
+                <a
+                  href="https://twitter.com/Pronabec"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
+                >
                   <Twitter className="h-5 w-5" />
-                </div>
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark cursor-pointer transition-colors duration-300">
+                </a>
+                <a
+                  href="https://www.instagram.com/pronabecperu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
+                >
                   <Instagram className="h-5 w-5" />
-                </div>
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark cursor-pointer transition-colors duration-300">
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/pronabec/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
+                >
                   <Linkedin className="h-5 w-5" />
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -122,10 +134,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a 
-                    href={link.href} 
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300"
-                  >
+                  <a href={link.href} className="text-muted-foreground hover:text-primary transition-colors duration-300">
                     {link.label}
                   </a>
                 </li>
@@ -138,12 +147,14 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Becas PRONABEC</h4>
             <ul className="space-y-3">
               {becasLinks.map((beca) => (
-                <li key={beca}>
-                  <a 
-                    href="#becas" 
+                <li key={beca.label}>
+                  <a
+                    href={beca.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors duration-300"
                   >
-                    {beca}
+                    {beca.label}
                   </a>
                 </li>
               ))}
@@ -155,12 +166,14 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Recursos</h4>
             <ul className="space-y-3">
               {recursos.map((recurso) => (
-                <li key={recurso}>
-                  <a 
-                    href="#funcionalidades" 
+                <li key={recurso.label}>
+                  <a
+                    href={recurso.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors duration-300"
                   >
-                    {recurso}
+                    {recurso.label}
                   </a>
                 </li>
               ))}
@@ -176,7 +189,6 @@ const Footer = () => {
             <div className="text-muted-foreground text-sm">
               © 2024 BecaConecta. Todos los derechos reservados.
             </div>
-            
             <div className="flex items-center space-x-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-300">
                 Política de Privacidad
@@ -188,7 +200,6 @@ const Footer = () => {
                 Cookies
               </a>
             </div>
-
             <div className="flex items-center text-muted-foreground text-sm">
               Hecho con <Heart className="h-4 w-4 text-red-500 mx-1" /> para el Perú
             </div>

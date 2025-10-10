@@ -2,12 +2,12 @@ import React, { useState, MouseEvent } from "react";
 import "./WhatsappBubble.css";
 
 interface WhatsappBubbleProps {
-  number?: string; // número de WhatsApp, ej: "51957211671"
-  name?: string;   // nombre del contacto, ej: "Atención al cliente"
+  number?: string; 
+  name?: string;   
 }
 
 const WhatsappBubble: React.FC<WhatsappBubbleProps> = ({
-  number = "51916 767550",
+  number = "51917 461858",
   name = "Atención al cliente",
 }) => {
   const [isActive, setIsActive] = useState(false);

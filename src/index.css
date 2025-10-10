@@ -110,6 +110,17 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-float-slow { animation: float 6s ease-in-out infinite; }
+.animate-float-fast { animation: float 3s ease-in-out infinite; }
+.animate-float-delayed { animation: float 5s ease-in-out 1s infinite; }
+
+
 
 @layer base {
   * {

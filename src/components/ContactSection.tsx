@@ -307,22 +307,7 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <div className="bg-hero-gradient rounded-3xl p-8 text-white shadow-hero max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">
-              ¿Necesitas ayuda inmediata?
-            </h3>
-            <p className="text-white/90 mb-6">
-              Nuestro chatbot está disponible 24/7 para resolver tus dudas básicas 
-              sobre becas y procesos de postulación.
-            </p>
-            <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-white/90">
-              <MessageCircle className="h-5 w-5 mr-2" />
-              Iniciar Chat
-            </Button>
-          </div>
-        </div>
+       
       </div>
     </section>
   );
