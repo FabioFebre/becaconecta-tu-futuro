@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import becaConectaLogo from "@/assets/becaconecta-logo.png";
+import becaConectaLogo from "@/assets/becaconecta-logo.ico";
 
 const Footer = () => {
   const quickLinks = [
