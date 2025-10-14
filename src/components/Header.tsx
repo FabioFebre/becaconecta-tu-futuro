@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import becaConectaLogo from "@/assets/becaconecta-logo.png";
+import becaConectaLogo from "@/assets/becaconecta-logo.ico";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

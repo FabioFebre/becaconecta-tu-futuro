@@ -160,6 +160,8 @@ const FeaturesSection = () => {
             ))}
           </div>
 
+          
+
             <div className="flex justify-center mt-20">
               <Button className="bg-hero-gradient text-white px-6 py-3 rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out transform">
                 ¡Empieza YA con nosotros!
