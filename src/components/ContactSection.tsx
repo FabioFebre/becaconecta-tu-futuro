@@ -123,8 +123,9 @@ const ContactSection = () => {
   const faqs = [
     {
       question: "¿BecaConecta es gratuito?",
-      answer: "Sí, completamente gratuito. Nuestro objetivo es democratizar el acceso a la información sobre becas."
+      answer: "BecaConecta ofrece asesoramiento personalizado sobre becas y oportunidades educativas. Contamos con recursos gratuitos, pero algunos servicios especializados pueden tener un costo según el tipo de orientación que necesites."
     },
+
     {
       question: "¿Qué tan actualizada está la información?",
       answer: "Actualizamos diariamente nuestra base de datos con información oficial del PRONABEC y otras instituciones."
