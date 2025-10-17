@@ -1,12 +1,20 @@
+"use client";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Clock, MessageCircle, Send } from "lucide-react";
+import { Mail, Phone, Clock, Send } from "lucide-react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { supabase } from "@/lib/supabaseClient";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -18,6 +26,10 @@ const ContactSection = () => {
     message: "",
     consultationType: ""
   });
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +50,7 @@ const ContactSection = () => {
       return;
     }
 
-    // Validación de email
+    // Validación de correo
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast({
@@ -49,28 +61,24 @@ const ContactSection = () => {
       return;
     }
 
-    // Preparar datos para el backend
-    const payload = {
-      nombres: formData.name,
-      correo: formData.email,
-      telefono: formData.phone,
-      tipo_consulta: formData.consultationType,
-      asunto: formData.subject,
-      mensaje: formData.message
-    };
-
     try {
-      const res = await fetch("https://beca-conecta-backend.onrender.com/usuarios", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+      // Inserción en Supabase
+      const { error } = await supabase.from("contactos").insert([
+        {
+          nombre: formData.name,
+          correo: formData.email,
+          telefono: formData.phone,
+          tipo_consulta: formData.consultationType,
+          asunto: formData.subject,
+          mensaje: formData.message
+        }
+      ]);
 
-      if (!res.ok) throw new Error("Error al enviar el formulario");
+      if (error) throw error;
 
       toast({
         title: "¡Mensaje enviado!",
-        description: "Te responderemos dentro de las próximas 24 horas.",
+        description: "Tu mensaje fue registrado correctamente en Supabase.",
       });
 
       setFormData({
@@ -82,16 +90,13 @@ const ContactSection = () => {
         consultationType: ""
       });
     } catch (error) {
+      console.error(error);
       toast({
-        title: "Error",
-        description: "No se pudo enviar el mensaje. Intenta nuevamente.",
+        title: "Error al enviar",
+        description: "No se pudo guardar el mensaje en Supabase.",
         variant: "destructive"
       });
     }
-  };
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const contactInfo = [
@@ -123,20 +128,23 @@ const ContactSection = () => {
   const faqs = [
     {
       question: "¿BecaConecta es gratuito?",
-      answer: "BecaConecta ofrece asesoramiento personalizado sobre becas y oportunidades educativas. Contamos con recursos gratuitos, pero algunos servicios especializados pueden tener un costo según el tipo de orientación que necesites."
+      answer:
+        "BecaConecta ofrece asesoramiento personalizado sobre becas y oportunidades educativas. Contamos con recursos gratuitos, pero algunos servicios especializados pueden tener un costo según el tipo de orientación que necesites."
     },
-
     {
       question: "¿Qué tan actualizada está la información?",
-      answer: "Actualizamos diariamente nuestra base de datos con información oficial del PRONABEC y otras instituciones."
+      answer:
+        "Actualizamos diariamente nuestra base de datos con información oficial del PRONABEC y otras instituciones."
     },
     {
       question: "¿Puedo usar BecaConecta desde cualquier dispositivo?",
-      answer: "Sí, nuestra plataforma es completamente responsive y funciona en computadoras, tablets y móviles."
+      answer:
+        "Sí, nuestra plataforma es completamente responsive y funciona en computadoras, tablets y móviles."
     },
     {
       question: "¿Ofrecen soporte personalizado?",
-      answer: "Sí, además del chatbot 24/7, ofrecemos consultas personalizadas por correo y teléfono."
+      answer:
+        "Sí, además del chatbot 24/7, ofrecemos consultas personalizadas por correo y teléfono."
     }
   ];
 
@@ -145,9 +153,7 @@ const ContactSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="text-gradient">
-              Contáctanos
-            </span>
+            <span className="text-gradient">Contáctanos</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             ¿Tienes dudas sobre las becas o necesitas ayuda con tu postulación? 
@@ -156,7 +162,7 @@ const ContactSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-12">
-          {/* Contact Information */}
+          {/* Información de contacto */}
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-6">
@@ -165,20 +171,26 @@ const ContactSection = () => {
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start space-x-4">
-                    <div className={`w-12 h-12 ${info.color} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                    <div
+                      className={`w-12 h-12 ${info.color} rounded-xl flex items-center justify-center flex-shrink-0`}
+                    >
                       <info.icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground">{info.title}</h4>
+                      <h4 className="font-semibold text-foreground">
+                        {info.title}
+                      </h4>
                       <p className="text-foreground font-medium">{info.value}</p>
-                      <p className="text-sm text-muted-foreground">{info.subtitle}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {info.subtitle}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Office Hours */}
+            {/* Horarios */}
             <Card className="border-0 shadow-card">
               <CardHeader>
                 <CardTitle className="flex items-center">
@@ -204,7 +216,7 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            {/* Emergency Contact */}
+            {/* Emergencias */}
             <div className="bg-card-gradient p-6 rounded-2xl shadow-soft">
               <h4 className="font-semibold text-foreground mb-3">
                 🚨 Soporte de Emergencia
@@ -213,17 +225,23 @@ const ContactSection = () => {
                 Para consultas urgentes durante periodos de postulación:
               </p>
               <div className="bg-primary/10 p-3 rounded-lg">
-                <p className="text-sm font-medium text-primary">WhatsApp: +51 987 654 321</p>
-                <p className="text-xs text-muted-foreground">Solo emergencias académicas</p>
+                <p className="text-sm font-medium text-primary">
+                  WhatsApp: +51 987 654 321
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Solo emergencias académicas
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Formulario */}
           <div className="lg:col-span-2">
             <Card className="border-0 shadow-card">
               <CardHeader>
-                <CardTitle className="text-2xl text-foreground">Envíanos un Mensaje</CardTitle>
+                <CardTitle className="text-2xl text-foreground">
+                  Envíanos un Mensaje
+                </CardTitle>
                 <p className="text-muted-foreground">
                   Completa el formulario y te responderemos lo antes posible.
                 </p>
@@ -237,7 +255,7 @@ const ContactSection = () => {
                       </label>
                       <Input
                         value={formData.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        onChange={(e) => handleInputChange("name", e.target.value)}
                         placeholder="Tu nombre completo"
                         required
                       />
@@ -249,7 +267,7 @@ const ContactSection = () => {
                       <Input
                         type="email"
                         value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        onChange={(e) => handleInputChange("email", e.target.value)}
                         placeholder="tu.email@ejemplo.com"
                         required
                       />
@@ -263,7 +281,7 @@ const ContactSection = () => {
                       </label>
                       <Input
                         value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
                         placeholder="+51 xxx xxx xxx"
                       />
                     </div>
@@ -271,9 +289,11 @@ const ContactSection = () => {
                       <label className="text-sm font-medium text-foreground">
                         Tipo de Consulta *
                       </label>
-                      <Select 
-                        value={formData.consultationType} 
-                        onValueChange={(value) => handleInputChange('consultationType', value)}
+                      <Select
+                        value={formData.consultationType}
+                        onValueChange={(value) =>
+                          handleInputChange("consultationType", value)
+                        }
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Selecciona el tipo de consulta" />
@@ -295,7 +315,7 @@ const ContactSection = () => {
                     </label>
                     <Input
                       value={formData.subject}
-                      onChange={(e) => handleInputChange('subject', e.target.value)}
+                      onChange={(e) => handleInputChange("subject", e.target.value)}
                       placeholder="Resumen breve de tu consulta"
                       required
                     />
@@ -307,15 +327,15 @@ const ContactSection = () => {
                     </label>
                     <Textarea
                       value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      onChange={(e) => handleInputChange("message", e.target.value)}
                       placeholder="Describe tu consulta o problema en detalle..."
                       rows={5}
                       required
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full bg-hero-gradient hover:shadow-soft transition-all duration-300"
                     size="lg"
                   >
@@ -328,60 +348,43 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* FAQ Section */}
+        {/* FAQ */}
         <section className="mt-20 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto">
-      <h3 className="text-3xl sm:text-4xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 mb-12">
-        Preguntas Frecuentes
-      </h3>
+          <h3 className="text-3xl sm:text-4xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 mb-12">
+            Preguntas Frecuentes
+          </h3>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {faqs.map((faq, i) => (
-          <article
-            key={i}
-            className="relative bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
-            aria-labelledby={`faq-${i}-q`}
-          >
-            {/* Banda de acento a la izquierda */}
-            <div className="absolute left-0 top-6 bottom-6 w-1.5 rounded-r-2xl bg-gradient-to-b from-primary to-primary/60 pointer-events-none" />
-
-            {/* Icono decorativo arriba-derecha */}
-            <div className="absolute right-4 top-4 opacity-10 dark:opacity-6 transform rotate-6">
-              <InformationCircleIcon className="w-14 h-14 text-primary" />
-            </div>
-
-            {/* Contenido */}
-            <header className="pr-6">
-              <h4
-                id={`faq-${i}-q`}
-                className="text-lg sm:text-xl font-semibold text-foreground mb-2"
+          <div className="grid gap-6 md:grid-cols-2">
+            {faqs.map((faq, i) => (
+              <article
+                key={i}
+                className="relative bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
               >
-                {faq.question}
-              </h4>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-prose">
-                {faq.answer}
-              </p>
-            </header>
+                <div className="absolute left-0 top-6 bottom-6 w-1.5 rounded-r-2xl bg-gradient-to-b from-primary to-primary/60 pointer-events-none" />
+                <div className="absolute right-4 top-4 opacity-10 transform rotate-6">
+                  <InformationCircleIcon className="w-14 h-14 text-primary" />
+                </div>
+                <header className="pr-6">
+                  <h4 className="text-lg sm:text-xl font-semibold text-foreground mb-2">
+                    {faq.question}
+                  </h4>
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-prose">
+                    {faq.answer}
+                  </p>
+                </header>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">
+                    Última actualización • 2025
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
 
-            {/* Pie: etiqueta o CTA opcional */}
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">Última actualización • 2025</span>
-              {faq.popular && (
-                <span className="inline-flex items-center gap-2 text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
-                  ⭐ Popular
-                </span>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-
-      {/* Separador decorativo */}
-      <div className="mt-12 flex justify-center">
-        <div className="h-1 w-28 rounded-full bg-gradient-to-r from-primary to-primary/70" />
-      </div>
-    </section>
-
-       
+          <div className="mt-12 flex justify-center">
+            <div className="h-1 w-28 rounded-full bg-gradient-to-r from-primary to-primary/70" />
+          </div>
+        </section>
       </div>
     </section>
   );
