@@ -7,7 +7,7 @@ interface WhatsappBubbleProps {
 }
 
 const WhatsappBubble: React.FC<WhatsappBubbleProps> = ({
-  number = "51917 461858",
+  number = "51916767550",
   name = "Atención al cliente",
 }) => {
   const [isActive, setIsActive] = useState(false);
