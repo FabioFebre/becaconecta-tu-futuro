@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -6,6 +7,24 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  useEffect(() => {
+    // Cargar el script de Google Analytics dinámicamente
+    const script = document.createElement("script");
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-MN9MCNXKG9";
+    script.async = true;
+    document.head.appendChild(script);
+
+    // Inicializar GA cuando el script cargue
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MN9MCNXKG9");
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
@@ -13,8 +32,7 @@ const Index = () => {
         <HeroSection />
         <FeaturesSection />
         <TestimonialsSection />
-        <ContactSection/>
-
+        <ContactSection />
       </main>
       <Footer />
     </div>
