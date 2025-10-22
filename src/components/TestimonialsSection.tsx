@@ -7,52 +7,42 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      name: "María González",
-      location: "Lima, Perú",
-      beca: "Beca 18 - Pregrado",
-      quote:
-        "BecaConecta me ayudó a entender todos los requisitos de la Beca 18. Sin su guía paso a paso, nunca habría completado mi postulación correctamente.",
-      career: "Ingeniería de Sistemas",
-      university: "Universidad Nacional Mayor de San Marcos",
-      rating: 5,
-      image: "👩‍🎓",
-    },
-    {
-      name: "Carlos Mendoza",
-      location: "Arequipa, Perú",
-      beca: "Beca Generación del Bicentenario",
-      quote:
-        "El test de elegibilidad me mostró que calificaba para una beca que ni sabía que existía. Ahora estudio mi carrera soñada gracias a BecaConecta.",
-      career: "Medicina",
-      university: "Universidad Nacional de San Agustín",
-      rating: 5,
-      image: "👨‍⚕️",
-    },
-    {
-      name: "Ana Quispe",
-      location: "Cusco, Perú",
-      beca: "Beca Mujeres en Ciencia",
-      quote:
-        "Como mujer interesada en STEM, BecaConecta me orientó hacia la beca perfecta. Su chatbot resolvió todas mis dudas a cualquier hora.",
-      career: "Ingeniería Química",
-      university: "Universidad Nacional de Ingeniería",
-      rating: 5,
-      image: "👩‍🔬",
-    },
-    {
-      name: "Luis Herrera",
-      location: "Trujillo, Perú",
-      beca: "Beca Perú - Maestría",
-      quote:
-        "BecaConecta no solo me ayudó con la postulación, sino que me preparó para estudiar en el extranjero. Su apoyo fue fundamental.",
-      career: "Maestría en Administración",
-      university: "Universidad del Pacífico",
-      rating: 5,
-      image: "👨‍💼",
-    },
-  ];
+ const testimonials = [
+  {
+    name: "Sebastián Vílchez Gamboa",
+    location: "Trujillo, Perú",
+    beca: "Cofundador de BecaConecta",
+    quote:
+      "BecaConecta nació como un proyecto entre amigos trujillanos con el deseo de guiar a otros jóvenes hacia las becas y oportunidades que nosotros mismos buscamos. Queremos demostrar que desde TECSUP también se puede inspirar a todo el país.",
+    career: "Desarrollo de Software",
+    university: "TECSUP",
+    rating: 5,
+    image: "👨‍💻",
+  },
+  {
+    name: "Eloy Sánchez Ruiz",
+    location: "Trujillo, Perú",
+    beca: "Cofundador y Coordinador de Contenido",
+    quote:
+      "Nuestra visión fue crear una plataforma hecha por estudiantes y para estudiantes. Desde Trujillo, formamos un equipo que une la tecnología y la educación para brindar oportunidades a miles de jóvenes.",
+    career: "Diseño y Desarrollo de Software",
+    university: "TECSUP",
+    rating: 5,
+    image: "👨‍🎓",
+  },
+  {
+    name: "Fabio Febre Vargas",
+    location: "Trujillo, Perú",
+    beca: "Cofundador y Desarrollador Frontend",
+    quote:
+      "Desde TECSUP y nuestra ciudad de Trujillo, impulsamos BecaConecta con la meta de hacer más accesible la información sobre becas. Cada línea de código fue pensada para apoyar a quien sueña con estudiar más allá de los límites.",
+    career: "Ingeniería de Software",
+    university: "TECSUP",
+    rating: 5,
+    image: "💻",
+  },
+];
+
 
   const stats = [
     { number: "2,500+", label: "Estudiantes Orientados", color: "text-primary" },
@@ -77,13 +67,16 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.7 }}
         >
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gradient">
-            Historias de Éxito
+            Fundadores de BecaConecta
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Conoce las experiencias de estudiantes que lograron acceder a becas educativas con el apoyo de{" "}
-            <span className="font-semibold text-primary">BecaConecta</span>.
+            Conoce a los jóvenes  detrás de{" "}
+            <span className="font-semibold text-primary">BecaConecta</span>, un proyecto
+            creado por estudiantes de <span className="font-semibold">TECSUP</span> con la
+            misión de conectar a más jóvenes con oportunidades de becas y educación de calidad.
           </p>
         </motion.div>
+
 
         {/* Carrusel principal */}
         <div className="relative mb-20">

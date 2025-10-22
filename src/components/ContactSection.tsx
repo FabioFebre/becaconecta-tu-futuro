@@ -103,14 +103,14 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Correo Electrónico",
-      value: "info@becaconecta.com",
+      value: "febrevargasf@gmail.com",
       subtitle: "Respuesta en 24 horas",
       color: "bg-primary"
     },
     {
       icon: Phone,
       title: "Teléfono",
-      value: "+51 1 234 5678",
+      value: "+51 916 767 550",
       subtitle: "Lun - Vie: 8:00 AM - 6:00 PM",
       color: "bg-secondary"
     }
@@ -208,10 +208,6 @@ const ContactSection = () => {
                     <span className="text-muted-foreground">Sábados</span>
                     <span className="font-medium text-foreground">9:00 AM - 2:00 PM</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Domingos</span>
-                    <span className="font-medium text-foreground">Chatbot disponible</span>
-                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -226,7 +222,7 @@ const ContactSection = () => {
               </p>
               <div className="bg-primary/10 p-3 rounded-lg">
                 <p className="text-sm font-medium text-primary">
-                  WhatsApp: +51 987 654 321
+                  WhatsApp: +51 916 767 550
                 </p>
                 <p className="text-xs text-muted-foreground">
                   Solo emergencias académicas

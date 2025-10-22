@@ -56,57 +56,21 @@ const Footer = () => {
               <div className="space-y-2">
                 <div className="flex items-center space-x-3 text-muted-foreground">
                   <Mail className="h-4 w-4" />
-                  <span>info@becaconecta.com</span>
+                  <span>febrevargasf@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-3 text-muted-foreground">
                   <Phone className="h-4 w-4" />
-                  <span>+51 1 234 5678</span>
+                  <span>+51 916 767 550</span>
                 </div>
                 <div className="flex items-center space-x-3 text-muted-foreground">
                   <MapPin className="h-4 w-4" />
-                  <span>Lima, Perú</span>
+                  <span>Trujillo, Perú</span>
                 </div>
               </div>
             </div>
 
-            {/* Redes Sociales */}
-            <div className="space-y-3">
-              <h4 className="font-semibold text-foreground">Síguenos:</h4>
-              <div className="flex space-x-4">
-                <a
-                  href="https://www.facebook.com/Pronabec"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://twitter.com/Pronabec"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
-                >
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://www.instagram.com/pronabecperu/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
-                >
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/pronabec/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
+           
+            
           </div>
 
           {/* Quick Links */}
